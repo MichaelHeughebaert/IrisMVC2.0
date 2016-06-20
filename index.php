@@ -3,4 +3,6 @@
  * This is the index page, all traffic is routed though this page.
  */
 
+namespace IrisMVC;
+
 require '../config.php';
