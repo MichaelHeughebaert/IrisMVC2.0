@@ -6,3 +6,8 @@
 namespace IrisMVC;
 
 require '../config.php';
+
+use IrisMVC\libs\bootstrap;
+
+$bootstrap = new Bootstrap();
+$bootstrap->init();
