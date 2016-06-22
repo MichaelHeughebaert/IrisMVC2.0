@@ -7,6 +7,10 @@ use controllers\error;
 
 class Bootstrap
 {
+    /**
+     * @var $_url array Contains the current url, used for routing.
+     * @var $_controller Object Contains the currently loaded controller.
+     */
     private $_url = null;
     private $_controller = null;
 
@@ -74,6 +78,7 @@ class Bootstrap
     {
         $this->_controller = new Error();
         $this->_controller->index();
+        exit();
     }
 
     /**
