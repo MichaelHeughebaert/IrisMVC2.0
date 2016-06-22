@@ -3,7 +3,7 @@
 namespace libs;
 
 use controllers\dashboard;
-use controllers\error;
+use controllers\errorHandler;
 
 class Bootstrap
 {
@@ -76,7 +76,7 @@ class Bootstrap
      */
     private function _loadErrorController()
     {
-        $this->_controller = new Error();
+        $this->_controller = new ErrorHandler();
         $this->_controller->index();
         exit();
     }
