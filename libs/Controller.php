@@ -6,6 +6,11 @@ class Controller
 {
     public $model;
 
+    /**
+     * Controller constructor.
+     *
+     * Creates View object.
+     */
     public function __construct()
     {
         $this->view = new View();
