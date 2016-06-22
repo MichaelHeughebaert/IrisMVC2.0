@@ -19,12 +19,18 @@
     <link href="<?= URL; ?>public/global/css/components.min.css" rel="stylesheet" id="style_components"
           type="text/css"/>
     <link href="<?= URL; ?>public/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+
+    <?php if (isset($this->scripts) && in_array('login', $this->scripts)) { ?>
+        <link href="<?= URL; ?>public/pages/css/login-2.min.css" rel="stylesheet" type="text/css"/>
+    <?php } ?>
+
     <link href="<?= URL; ?>public/global/css/layout.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?= URL; ?>public/global/css/themes/darkblue.min.css" rel="stylesheet" type="text/css"
           id="style_color"/>
     <link href="<?= URL; ?>public/global/css/custom.min.css" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" href="<?= URL; ?>public/global/img/favicon.ico"/>
 </head>
+<?php if ($this->title != 'Aanmelden') { ?>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-content-white">
 <div class="page-header navbar navbar-fixed-top">
     <div class="page-header-inner ">
@@ -74,3 +80,11 @@
 
     <div class="page-content-wrapper">
         <div class="page-content">
+<?php } else { ?>
+<body class="login">
+<div class="logo">
+    <a href="#"> <img src="<?= URL; ?>public/global/img/logo-big-white.png" style="height: 17px;" alt=""/>
+    </a>
+</div>
+<div class="content">
+<?php } ?>

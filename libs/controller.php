@@ -9,10 +9,21 @@ class Controller
     /**
      * Controller constructor.
      *
+     * Checks if user is logged in, redirect to login if false.
      * Creates View object.
+     *
+     * @param $loginPage bool
      */
-    public function __construct()
+    public function __construct($loginPage = false)
     {
+        $isLogged = Session::get('isLogged');
+
+        if(!$isLogged && !$loginPage) {
+            Session::destroy();
+            header('location: ' . URL . 'authentication');
+            exit;
+        }
+
         $this->view = new View();
     }
 

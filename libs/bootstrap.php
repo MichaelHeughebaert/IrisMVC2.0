@@ -2,8 +2,8 @@
 
 namespace libs;
 
-use controllers\dashboard;
-use controllers\errorHandler;
+use controllers\Dashboard;
+use controllers\ErrorHandler;
 
 class Bootstrap
 {
