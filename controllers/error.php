@@ -11,8 +11,11 @@ class Error extends Controller
         parent::__construct();
     }
 
+    /**
+     * Renders the Error index view
+     */
     public function index()
     {
-        echo 'Dit is de error index';
+        $this->view->render('error/index');
     }
 }
