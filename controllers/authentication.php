@@ -23,11 +23,27 @@ class Authentication extends Controller
         $isLogged = Session::get('isLogged');
 
         if(!$isLogged) {
-            $this->view->title = 'Aanmelden';
-            $this->view->scripts = array('login');
-            $this->view->render('authentication/index', false);
+            $this->renderLogin();
         } else {
             $this->view->render('dashboard/index');
         }
+    }
+
+    public function login()
+    {
+        $errors = $this->model->login();
+
+        if (isset($errors)) {
+            $this->view->errorArray = $errors;
+        }
+
+        $this->renderLogin();
+    }
+
+    public function renderLogin()
+    {
+        $this->view->title = 'Aanmelden';
+        $this->view->scripts = array('login');
+        $this->view->render('authentication/index');
     }
 }
