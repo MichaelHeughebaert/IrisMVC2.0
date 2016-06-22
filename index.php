@@ -1,13 +1,13 @@
 <?php
-/**
- * This is the index page, all traffic is routed though this page.
- */
 
-namespace IrisMVC;
+spl_autoload_register(function ($class) {
+    $parts = explode('\\', $class);
+    require implode('/', $parts) . '.php';
+});
 
 require '../config.php';
 
-use IrisMVC\libs\bootstrap;
+use libs\bootstrap;
 
 $bootstrap = new Bootstrap();
 $bootstrap->init();
