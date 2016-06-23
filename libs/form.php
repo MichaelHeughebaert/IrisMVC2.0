@@ -11,21 +11,38 @@ class Form
     private $_currItem = null;
     private $_postData = array();
 
+    /**
+     * Form constructor.
+     */
     public function __construct()
     {
         $this->_validation = new FormValidation();
     }
 
+    /**
+     * Function to populate the form data.
+     *
+     * @param string $field Key of the value in $_POST
+     * @return Object $this Form object
+     */
     public function post($field)
     {
-        $this->_postData[$field] = $_POST[$field];
-        $this->_currItem = $field;
+        if (isset($_POST[$field])) {
+            $this->_postData[$field] = $_POST[$field];
+            $this->_currItem = $field;
+        }
         return $this;
     }
 
-    public function fetch($fieldName = false)
+    /**
+     * Function to call the value of a field.
+     *
+     * @param string $fieldName Field name
+     * @return array|string All data or specific field
+     */
+    public function fetch($fieldName = '')
     {
-        if ($fieldName) {
+        if (empty($fieldName)) {
             if (isset($this->_postData[$fieldName]))
                 return $this->_postData[$fieldName];
             else
@@ -35,6 +52,13 @@ class Form
         }
     }
 
+    /**
+     * Function used to call validation.
+     *
+     * @param string $typeOfValidator Validator that needs to be called
+     * @param mixed $arg Argument used in validation, e.g. length
+     * @return Object $this Form object
+     */
     public function val($typeOfValidator, $arg = null)
     {
         if ($arg == null)
@@ -48,6 +72,11 @@ class Form
         return $this;
     }
 
+    /**
+     * Function used to get all errors of the form.
+     *
+     * @return array Array containing all errors
+     */
     public function submit()
     {
         if (!empty($this->_errorArray)) {

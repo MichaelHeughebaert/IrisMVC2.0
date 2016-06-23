@@ -83,8 +83,7 @@
 <?php } else { ?>
 <body class="login">
 <div class="logo">
-    <a href="#"> <img src="<?= URL; ?>public/global/img/logo-big-white.png" style="height: 17px;" alt=""/>
-    </a>
+    <img src="<?= URL; ?>public/global/img/logo-big-white.png" style="height: 17px;" alt="intranet logo"/>
 </div>
 <div class="content">
 <?php } ?>

@@ -1,7 +1,7 @@
 <form class="login-form" action="<?= URL; ?>authentication/login" method="post">
     <div class="form-title">
-        <span class="form-title">Welkom.</span>
-        <span class="form-subtitle">Gelieve u aan te melden.</span>
+        <span class="form-title">Welkom</span>
+        <span class="form-subtitle">Gelieve u aan te melden</span>
     </div>
     <?php
     if (isset($this->errorArray)) {

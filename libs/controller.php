@@ -12,7 +12,7 @@ class Controller
      * Checks if user is logged in, redirect to login if false.
      * Creates View object.
      *
-     * @param $loginPage bool
+     * @param bool $loginPage Is it the login page?
      */
     public function __construct($loginPage = false)
     {

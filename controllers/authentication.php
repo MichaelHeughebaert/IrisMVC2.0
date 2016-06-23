@@ -17,6 +17,9 @@ class Authentication extends Controller
 
     /**
      * Renders the Authentication index view
+     *
+     * Checks if user is logged in.
+     * Redirects to login if false, to dashboard if true.
      */
     public function index()
     {
@@ -29,6 +32,10 @@ class Authentication extends Controller
         }
     }
 
+    /**
+     * Calls the login function in the model.
+     * Renders login page with errors if login failed.
+     */
     public function login()
     {
         $errors = $this->model->login();
@@ -40,6 +47,9 @@ class Authentication extends Controller
         $this->renderLogin();
     }
 
+    /**
+     * Renders the login page.
+     */
     public function renderLogin()
     {
         $this->view->title = 'Aanmelden';

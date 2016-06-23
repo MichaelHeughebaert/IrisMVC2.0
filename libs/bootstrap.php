@@ -7,10 +7,6 @@ use controllers\ErrorHandler;
 
 class Bootstrap
 {
-    /**
-     * @var $_url array Contains the current url, used for routing.
-     * @var $_controller Object Contains the currently loaded controller.
-     */
     private $_url = null;
     private $_controller = null;
 
@@ -85,11 +81,15 @@ class Bootstrap
      * Function used to call a specific method inside the controller.
      *
      * Checks if URL is required length and redirects to error page if needed.
-     * Call method of controller using parameters in url, current maximum of 3 parameters per method.
+     * Call method of controller using parameters in url.
      */
     private function _callControllerMethod()
     {
         $length = count($this->_url);
+
+        if ($length < 1) {
+            $this->_controller->index();
+        }
 
         if ($length > 1) {
             if (!method_exists($this->_controller, $this->_url[1])) {
@@ -97,24 +97,19 @@ class Bootstrap
             }
         }
 
-        switch ($length) {
-            default:
-                $this->_controller->index();
-                break;
-            case 2:
-                $this->_controller->{$this->_url[1]} ();
-                break;
-            case 3:
-                $this->_controller->{$this->_url[1]} ($this->_url[2]);
-                break;
-            case 4:
-                $this->_controller->{$this->_url[1]} ($this->_url[2], $this->_url[3]);
-                break;
-            case 5:
-                $this->_controller->{$this->_url[1]} ($this->_url[2], $this->_url[3], $this->_url[4]);
-                break;
+        if ($length == 2) {
+            $this->_controller->{$this->_url[1]} ();
         }
 
-        //TODO: Rewrite switch to handle more parameters
+        if ($length > 2) {
+            $parameters = '';
+
+            for ($i = 2; $length > $i; $i++) {
+                $parameters .= $this->_url[$i] . ',';
+            }
+
+            $parameters = rtrim($parameters, ',');
+            $this->_controller->{$this->_url[1]} ($parameters);
+        }
     }
 }

@@ -15,8 +15,8 @@ class Session
     /**
      * Store the key/variable combination in the session.
      *
-     * @param $key string
-     * @param $value string
+     * @param string $key Key of the session variable
+     * @param string $value Value of the session variable
      */
     public static function set($key, $value)
     {
@@ -26,8 +26,8 @@ class Session
     /**
      * Get the stored variable from the session.
      *
-     * @param $key string
-     * @return string|bool
+     * @param string $key Key of the session variable
+     * @return string Value of the session variable
      */
     public static function get($key)
     {
@@ -35,7 +35,7 @@ class Session
             return $_SESSION[$key];
         }
 
-        return false;
+        return '';
     }
 
     /**
