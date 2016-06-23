@@ -5,6 +5,7 @@ namespace libs\Adldap\Models\Traits;
 use libs\Adldap\Models\Group;
 use libs\Adldap\Models\Model;
 use libs\Adldap\Utilities;
+use libs\Illuminate\Support\Collection;
 
 trait HasMemberOfTrait
 {
@@ -68,7 +69,7 @@ trait HasMemberOfTrait
      * @param array $fields
      * @param bool  $recursive
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getGroups($fields = [], $recursive = false)
     {
@@ -98,7 +99,7 @@ trait HasMemberOfTrait
      *
      * @param array $fields
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function getMemberOf($fields = [])
     {

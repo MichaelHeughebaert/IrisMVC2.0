@@ -10,6 +10,7 @@ use libs\Adldap\Models\RootDse;
 use libs\Adldap\Query\Builder;
 use libs\Adldap\Query\Grammar;
 use libs\Adldap\Schemas\Schema;
+use libs\Illuminate\Support\Collection;
 
 class Factory
 {
@@ -131,7 +132,7 @@ class Factory
      * connection by performing a search for all entries
      * that contain a common name attribute.
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return Collection|array
      */
     public function all()
     {
@@ -141,7 +142,7 @@ class Factory
     /**
      * Alias for the `all()` method.
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return Collection|array
      */
     public function get()
     {

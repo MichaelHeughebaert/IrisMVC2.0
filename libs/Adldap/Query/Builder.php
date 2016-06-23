@@ -191,7 +191,7 @@ class Builder
     /**
      * Returns the current query.
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return Collection|array
      */
     public function get()
     {
@@ -257,7 +257,7 @@ class Builder
      *
      * @param string $query
      *
-     * @return \Illuminate\Support\Collection|array
+     * @return Collection|array
      */
     public function query($query)
     {

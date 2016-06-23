@@ -151,7 +151,7 @@ abstract class Model implements ArrayAccess, JsonSerializable
      *
      * @param mixed $items
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function newCollection($items)
     {
