@@ -27,7 +27,7 @@ class Session
      * Get the stored variable from the session.
      *
      * @param string $key Key of the session variable
-     * @return string Value of the session variable
+     * @return bool|string Value of the session variable
      */
     public static function get($key)
     {
@@ -35,7 +35,7 @@ class Session
             return $_SESSION[$key];
         }
 
-        return '';
+        return false;
     }
 
     /**

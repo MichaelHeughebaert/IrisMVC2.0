@@ -87,29 +87,23 @@ class Bootstrap
     {
         $length = count($this->_url);
 
-        if ($length < 1) {
+        if ($length == 1) {
             $this->_controller->index();
-        }
-
-        if ($length > 1) {
+        } elseif ($length > 1) {
             if (!method_exists($this->_controller, $this->_url[1])) {
                 $this->_loadErrorController();
-            }
-        }
-
-        if ($length == 2) {
+            } elseif ($length == 2) {
             $this->_controller->{$this->_url[1]} ();
-        }
+            } elseif ($length > 2) {
+                $parameters = '';
 
-        if ($length > 2) {
-            $parameters = '';
+                for ($i = 2; $length > $i; $i++) {
+                    $parameters .= $this->_url[$i] . ',';
+                }
 
-            for ($i = 2; $length > $i; $i++) {
-                $parameters .= $this->_url[$i] . ',';
+                $parameters = rtrim($parameters, ',');
+                $this->_controller->{$this->_url[1]} ($parameters);
             }
-
-            $parameters = rtrim($parameters, ',');
-            $this->_controller->{$this->_url[1]} ($parameters);
         }
     }
 }

@@ -37,12 +37,12 @@ class Form
     /**
      * Function to call the value of a field.
      *
-     * @param string $fieldName Field name
+     * @param string|bool $fieldName Field name
      * @return array|string All data or specific field
      */
-    public function fetch($fieldName = '')
+    public function fetch($fieldName = false)
     {
-        if (empty($fieldName)) {
+        if ($fieldName) {
             if (isset($this->_postData[$fieldName]))
                 return $this->_postData[$fieldName];
             else

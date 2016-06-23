@@ -46,7 +46,5 @@ class Authentication_model extends Model
                 header('location: ' . URL . 'dashboard');
             }
         }
-
-        return 1;
     }
 }
