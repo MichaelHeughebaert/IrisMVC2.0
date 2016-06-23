@@ -34,7 +34,9 @@ class Model
         try {
             $this->ldap->connect('default');
         } catch (BindException $e) {
-            die('Kan geen verbinding met de active directory tot stand brengen');
+            die('Kan geen verbinding met de active directory tot stand brengen!');
         }
+
+        $this->db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PWD);
     }
 }
