@@ -4,7 +4,7 @@
         <span class="form-subtitle">Gelieve u aan te melden</span>
     </div>
     <?php
-    if (isset($this->errorArray)) {
+    if ($this->getParam('errors', 'Gebruikersnaam') || $this->getParam('errors', 'Wachtwoord')) {
         echo '<div class="alert alert-danger display-hide" style="display: block">';
         echo 'Gebruikersnaam en/of wachtwoord is verkeerd';
         echo '</div>';

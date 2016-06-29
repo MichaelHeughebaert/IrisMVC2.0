@@ -1,15 +1,3 @@
-<div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="<?= URL; ?>dashboard">Beginpagina</a>
-        </li>
-        <li>
-            <i class="fa fa-circle"></i>
-            <span>Systeem</span>
-        </li>
-    </ul>
-</div>
 <br />
 <div class="note note-warning">
     <h3>404 - We kunnen de pagina die je opgevraagd hebt niet vinden</h3>
@@ -17,7 +5,8 @@
 </div>
 
 <?php
-$random = $this->quotes[mt_rand(0, count($this->quotes) - 1)];
+$quotes = $this->getParam('quotes');
+$random = $quotes[mt_rand(0, count($quotes) - 1)];
 $quote = explode("|", stripslashes($random));
 ?>
 
