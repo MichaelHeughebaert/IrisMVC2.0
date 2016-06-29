@@ -32,8 +32,6 @@ class ErrorHandler extends Controller
             "He's off the map! He's off the map!|Stan, Eternal Sunshine of the Spotless Mind (2004)"
         );
 
-        $this->view->quotes = $quotes;
-        $this->view->title = '404 Foutpagina';
-        $this->view->render('errorhandler/index');
+        $this->view->render('errorhandler/index', '404 Foutpagina', array('quotes' => $quotes));
     }
 }

@@ -22,17 +22,8 @@ class Authentication extends Controller
      */
     public function index()
     {
-        $this->renderLogin();
-    }
-
-    /**
-     * Renders the login page.
-     */
-    public function renderLogin()
-    {
-        $this->view->title = 'Aanmelden';
-        $this->view->scripts = array('login');
-        $this->view->render('authentication/index');
+        $params = array('scripts' => array('login'));
+        $this->view->render('authentication/index', 'Aanmelden', $params);
     }
 
     /**
@@ -41,12 +32,17 @@ class Authentication extends Controller
      */
     public function login()
     {
+        $params = array('scripts' => array('login'));
         $errors = $this->model->login();
 
-        if (isset($errors)) {
-            $this->view->errorArray = $errors;
-        }
+        if ($errors === true) {
+            header('location: /dashboard');
+        } else {
+            if (is_array($errors)) {
+                $params = array_merge($params, array('errors' => $errors));
+            }
 
-        $this->renderLogin();
+            $this->view->render('authentication/index', 'Aanmelden', $params);
+        }
     }
 }

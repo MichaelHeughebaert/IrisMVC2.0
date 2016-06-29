@@ -15,7 +15,7 @@ class Authentication_model extends Model
      * Checks if data is correct in AD.
      * Log in user and create session.
      *
-     * @return array|int Return error array of error code
+     * @return array|bool Return error array of error code
      */
     public function login()
     {
@@ -35,8 +35,10 @@ class Authentication_model extends Model
 
             if ($this->provider->auth()->attempt($form->fetch('Gebruikersnaam'), $form->fetch('Wachtwoord'))) {
                 Session::set('isLogged', true);
-                header('location: ' . URL . 'dashboard');
+                return true;
             }
         }
+
+        return false;
     }
 }

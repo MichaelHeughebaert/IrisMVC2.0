@@ -11,7 +11,6 @@ class Dashboard extends Controller
      */
     public function index()
     {
-        $this->view->title = 'Dashboard';
-        $this->view->render('dashboard/index');
+        $this->view->render('dashboard/index', 'Dashboard');
     }
 }

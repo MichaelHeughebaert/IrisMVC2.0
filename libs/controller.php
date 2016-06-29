@@ -17,14 +17,13 @@ class Controller
     public function __construct($loginPage = false)
     {
         $isLogged = Session::get('isLogged');
+        $this->view = new View();
 
         if(!$isLogged && !$loginPage) {
             Session::destroy();
-            header('location: ' . URL . 'authentication');
+            $this->view->render('authentication/index', 'Aanmelden', array('scripts' => array('login')));
             exit;
         }
-
-        $this->view = new View();
     }
 
     /**
