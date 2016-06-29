@@ -88,7 +88,7 @@
         <div class="page-content">
             <div class="page-bar">
                 <ul class="page-breadcrumb">
-                    <?= $this->breadcrumbs() ?>
+                    <?= $this->renderBreadcrumbs(); ?>
                 </ul>
             </div>
 <?php } ?>

@@ -74,6 +74,7 @@ class Bootstrap
     {
         $this->_controller = new ErrorHandler();
         $this->_controller->index();
+        exit();
     }
 
     /**

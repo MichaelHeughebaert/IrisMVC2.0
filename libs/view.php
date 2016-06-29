@@ -56,6 +56,40 @@ class View
     }
 
     /**
+     * Function to generate page breadcrumbs.
+     * Need to fill in the custom breadcrumb titles when creating new pages.
+     *
+     * @param string $separator Icon which separates the breadcrumbs
+     * @param string $home Default string which defines the homepage
+     * @return string HTML string of breadcrumbs
+     */
+    public function renderBreadcrumbs($separator = 'fa fa-circle', $home = 'Beginpagina')
+    {
+        $controllers = array('errorhandler' => 'Systeem');
+        $methods = array('errorhandler' => array('index' => 'Overzicht'));
+
+        $path = array_filter(explode('/', strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))));
+        $breadcrumbs = '<li><i class="icon-home"></i>&nbsp;<a href="/">' . $home . '</a></li>';
+
+        if (!isset($path[1]) || $path[1] == 'dashboard')
+            return $breadcrumbs;
+
+        if (array_key_exists($path[1], $controllers)) {
+            $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/' . $path[1] . '">' . $controllers[$path[1]] . '</a></li>';
+
+            if (array_key_exists($path[1], $methods)) {
+                if (array_key_exists($path[2], $methods[$path[1]])) {
+                    $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/' . $path[1] . '/' . $path[2] . '">' . $methods[$path[1]][$path[2]] . '</a></li>';
+                }
+            }
+        } else {
+            $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/">Systeem</li></a>';
+        }
+
+        return $breadcrumbs;
+    }
+
+    /**
      * Function to get the title of the view.
      *
      * @return string Title of the view
@@ -87,39 +121,5 @@ class View
         }
 
         return false;
-    }
-
-    /**
-     * Function to generate page breadcrumbs.
-     * Need to fill in the custom breadcrumb titles when creating new pages.
-     *
-     * @param string $separator Icon which separates the breadcrumbs
-     * @param string $home Default string which defines the homepage
-     * @return string HTML string of breadcrumbs
-     */
-    public function breadcrumbs($separator = 'fa fa-circle', $home = 'Beginpagina')
-    {
-        $controllers = array('errorhandler' => 'Systeem');
-        $methods = array('errorhandler' => array('index' => 'Overzicht'));
-
-        $path = array_filter(explode('/', strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))));
-        $breadcrumbs = '<li><i class="icon-home"></i>&nbsp;<a href="/">' . $home . '</a></li>';
-
-        if (!isset($path[1]) || $path[1] == 'dashboard')
-            return $breadcrumbs;
-
-        if (array_key_exists($path[1], $controllers)) {
-            $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/' . $path[1] . '">' . $controllers[$path[1]] . '</a></li>';
-
-            if (array_key_exists($path[1], $methods)) {
-                if (array_key_exists($path[2], $methods[$path[1]])) {
-                    $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/' . $path[1] . '/' . $path[2] . '">' . $methods[$path[1]][$path[2]] . '</a></li>';
-                }
-            }
-        } else {
-            $breadcrumbs .= '<li><i class="' . $separator . '"></i><a href="/">Systeem</li></a>';
-        }
-
-        return $breadcrumbs;
     }
 }
