@@ -19,12 +19,12 @@ class Authentication_model extends Model
      */
     public function login()
     {
-        if (isset($_POST['Gebruikersnaam']) && isset($_POST['Wachtwoord'])) {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
             $form = new Form();
 
-            $form->post('Gebruikersnaam')
+            $form->post('username')
                 ->val('required')
-                ->post('Wachtwoord')
+                ->post('password')
                 ->val('required');
 
             $errors = $form->submit();
@@ -33,8 +33,9 @@ class Authentication_model extends Model
                 return $errors;
             }
 
-            if ($this->provider->auth()->attempt($form->fetch('Gebruikersnaam'), $form->fetch('Wachtwoord'))) {
+            if ($this->provider->auth()->attempt($form->fetch('username'), $form->fetch('password'))) {
                 Session::set('isLogged', true);
+                Session::set('username', $form->fetch('username'));
                 return true;
             }
         }
