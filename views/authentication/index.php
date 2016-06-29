@@ -13,11 +13,11 @@
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">Gebruikersnaam</label>
         <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off"
-               placeholder="Gebruikersnaam" name="Gebruikersnaam" autofocus/></div>
+               placeholder="Gebruikersnaam" name="username" autofocus/></div>
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">Wachtwoord</label>
         <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off"
-               placeholder="Wachtwoord" name="Wachtwoord"/></div>
+               placeholder="Wachtwoord" name="password"/></div>
     <div class="form-actions">
         <button type="submit" class="btn red btn-block uppercase">Aanmelden</button>
     </div>
