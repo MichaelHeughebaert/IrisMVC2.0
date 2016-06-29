@@ -3,7 +3,6 @@
 namespace controllers;
 
 use libs\Controller;
-use libs\Session;
 
 class Authentication extends Controller
 {
@@ -23,13 +22,17 @@ class Authentication extends Controller
      */
     public function index()
     {
-        $isLogged = Session::get('isLogged');
+        $this->renderLogin();
+    }
 
-        if(!$isLogged) {
-            $this->renderLogin();
-        } else {
-            $this->view->render('dashboard/index');
-        }
+    /**
+     * Renders the login page.
+     */
+    public function renderLogin()
+    {
+        $this->view->title = 'Aanmelden';
+        $this->view->scripts = array('login');
+        $this->view->render('authentication/index');
     }
 
     /**
@@ -45,15 +48,5 @@ class Authentication extends Controller
         }
 
         $this->renderLogin();
-    }
-
-    /**
-     * Renders the login page.
-     */
-    public function renderLogin()
-    {
-        $this->view->title = 'Aanmelden';
-        $this->view->scripts = array('login');
-        $this->view->render('authentication/index');
     }
 }

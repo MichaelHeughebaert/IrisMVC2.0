@@ -28,7 +28,6 @@ class Model
 
         $this->ldap = new Adldap();
         $this->provider = new Provider($config);
-
         $this->ldap->addProvider('default', $this->provider);
 
         try {

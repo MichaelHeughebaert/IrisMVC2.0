@@ -6,11 +6,6 @@ use libs\Controller;
 
 class ErrorHandler extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Renders the Error index view
      */

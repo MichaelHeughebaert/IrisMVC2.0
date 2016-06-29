@@ -7,7 +7,7 @@ use libs\Form\FormValidation;
 class Form
 {
     private $_validation = null;
-    private $_errorArray = array();
+    private $_errorArray = array('hasError' => 0);
     private $_currItem = null;
     private $_postData = array();
 
@@ -66,8 +66,11 @@ class Form
         else
             $error = $this->_validation->{$typeOfValidator}($this->_postData[$this->_currItem], $arg);
 
-        if ($error)
-            $this->_errorArray[$this->_currItem] = $error;
+        if (isset($error['msg'])) {
+            $this->_errorArray['hasError'] = true;
+        }
+
+        $this->_errorArray[$this->_currItem] = $error;
 
         return $this;
     }

@@ -4,6 +4,8 @@ namespace libs\Form;
 
 class FormValidation
 {
+    private $_returnValue = array();
+
     public function __construct() {}
 
     /**
@@ -14,8 +16,11 @@ class FormValidation
      */
     public function required($data)
     {
-        if (empty($data)) {
-            return "Dit veld mag niet leeg zijn";
-        }
+        $this->_returnValue = array('value' => $data);
+
+        if (empty($data))
+            $this->_returnValue = array_merge($this->_returnValue, array('msg' => 'Dit veld mag niet leeg zijn'));
+
+        return $this->_returnValue;
     }
 }

@@ -7,18 +7,12 @@ use libs\Controller;
 class Sync extends Controller
 {
     /**
-     * Sync constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct(true);
-    }
-
-    /**
      * Synchronizes most recent data from AD to MySQL.
+     *
+     * @param bool $verbose String output of sync
      */
-    public function SyncADtoDB()
+    public function SyncADtoDB($verbose = false)
     {
-        $this->model->SyncADtoDB();
+        $this->model->SyncADtoDB($verbose);
     }
 }
