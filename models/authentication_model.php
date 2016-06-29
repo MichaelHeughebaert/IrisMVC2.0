@@ -9,14 +9,6 @@ use libs\Session;
 class Authentication_model extends Model
 {
     /**
-     * Authentication_model constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Function to handle the user login.
      *
      * Validates form data.
@@ -35,10 +27,10 @@ class Authentication_model extends Model
                 ->post('Wachtwoord')
                 ->val('required');
 
-            $errorArray = $form->submit();
+            $errors = $form->submit();
 
-            if (isset($errorArray)) {
-                return $errorArray;
+            if ($errors['hasError'] == 1) {
+                return $errors;
             }
 
             if ($this->provider->auth()->attempt($form->fetch('Gebruikersnaam'), $form->fetch('Wachtwoord'))) {
