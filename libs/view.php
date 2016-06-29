@@ -8,7 +8,11 @@ class View
     private $_title;
 
     /**
-     * Function used to render a specific view
+     * Function used to render a specific view.
+     *
+     * Set title.
+     * Set parameters.
+     * Render view.
      *
      * @param string $view Contains the name of the view it needs to load.
      * @param string $title Contains the title of the to be rendered view.
@@ -31,21 +35,43 @@ class View
         }
     }
 
+    /**
+     * Function to set the title of the view.
+     *
+     * @param string $title Title of view
+     */
     private function _setTitle($title)
     {
         $this->_title = 'Intranet | ' . $title;
     }
 
+    /**
+     * Function to set the parameters of the view.
+     *
+     * @param array $parameters Parameters needed in view
+     */
     private function _setParams($parameters)
     {
         $this->_parameters = $parameters;
     }
 
+    /**
+     * Function to get the title of the view.
+     *
+     * @return string Title of the view
+     */
     public function getTitle()
     {
         return $this->_title;
     }
 
+    /**
+     * Function to get a specific parameter for the view.
+     *
+     * @param string $param Required parameter
+     * @param null|string $key Key if the parameter is an array
+     * @return bool|string Return parameter value if exists
+     */
     public function getParam($param, $key = null)
     {
         if (!isset($key))
@@ -58,13 +84,19 @@ class View
                 if (array_key_exists($key, $this->_parameters['errors']))
                     return $this->_parameters['errors'][$key];
             }
-
-
         }
 
         return false;
     }
 
+    /**
+     * Function to generate page breadcrumbs.
+     * Need to fill in the custom breadcrumb titles when creating new pages.
+     *
+     * @param string $separator Icon which separates the breadcrumbs
+     * @param string $home Default string which defines the homepage
+     * @return string HTML string of breadcrumbs
+     */
     public function breadcrumbs($separator = 'fa fa-circle', $home = 'Beginpagina')
     {
         $controllers = array('errorhandler' => 'Systeem');
